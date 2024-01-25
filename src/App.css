@@ -1,0 +1,118 @@
+body {
+  background-color: #4a4f68;
+  overflow-x: hidden;
+}
+
+nav {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+  background-color: #22233a;
+  color: white;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+button {
+  margin: 1rem;
+  display: inline-block;
+  padding: 7px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #4a4a4a;
+  color: #fff;
+  background-color: #333;
+  border-radius: 7px;
+  transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #4a4a4a;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cards {
+  width: 100vw;
+  gap: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  min-height: 26rem;
+}
+
+input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-align: center;
+  width: 5rem;
+  outline: none;
+}
+
+input:hover,
+input:focus {
+  border-color: #aaa;
+}
+
+.input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.no-pokemon {
+  width: 40rem;
+  color: white;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.error {
+  width: 100%;
+  margin-top: 5rem;
+  color: white;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-left: 1.5rem;
+  margin-top: 4rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
