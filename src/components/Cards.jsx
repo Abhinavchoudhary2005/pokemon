@@ -25,7 +25,7 @@ function Cards(props) {
   useEffect(() => {
     setSelectedType(props.CardSelected);
     fetchPokemon();
-  }, [props.CardSelected, displayNumber]);
+  }, [props.CardSelected, displayNumber, fetchPokemon]);
 
   const fetchPokemon = async () => {
     try {
