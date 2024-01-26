@@ -7,10 +7,15 @@ function Cards(props) {
   const [pokemonList, setPokemonList] = useState([]);
   const [error, setError] = useState(null);
   const [displayNumber, setDisplayNumber] = useState(40);
+  const [text, setText] = useState("");
   const [selectedType, setSelectedType] = useState("All");
 
   function handleChange(e) {
     setDisplayNumber(parseInt(e.target.value));
+  }
+
+  function handleChangeText(e) {
+    setText(e.target.value);
   }
 
   function capitalizeFirstLetter(string) {
@@ -70,15 +75,29 @@ function Cards(props) {
     return <Error />;
   }
 
-  let filteredPokemonList = [];
+  let filteredPokemonList = pokemonList;
 
-  if (selectedType === "All") {
-    filteredPokemonList = pokemonList;
-  } else {
+  if (selectedType !== "All") {
     filteredPokemonList = pokemonList.filter(
       (pokemon) => capitalizeFirstLetter(pokemon.type) === selectedType
     );
   }
+
+  let filteredPokemontext = pokemonList.filter((pokemon) =>
+    pokemon.name.toLowerCase().startsWith(text.toLowerCase())
+  );
+
+  const renderFilteredPokemon = (pokemonArray) => {
+    return pokemonArray.map((pokemon) => (
+      <Card
+        key={pokemon.id}
+        name={capitalizeFirstLetter(pokemon.name)}
+        img={pokemon.image}
+        type={capitalizeFirstLetter(pokemon.type)}
+        ability={pokemon.ability}
+      />
+    ));
+  };
 
   return (
     <div>
@@ -94,7 +113,15 @@ function Cards(props) {
               min={1}
               max={500}
               onChange={handleChange}
-            ></input>
+            />
+          </div>
+          <div className="input-container">
+            <input
+              type="text"
+              value={text}
+              placeholder="Search Pokemon..."
+              onChange={handleChangeText}
+            />
           </div>
         </div>
       )}
@@ -103,16 +130,10 @@ function Cards(props) {
         {selectedType === "All" ? (
           filteredPokemonList.length === 0 ? (
             <Loader />
+          ) : text === "" ? (
+            renderFilteredPokemon(filteredPokemonList)
           ) : (
-            filteredPokemonList.map((pokemon) => (
-              <Card
-                key={pokemon.id}
-                name={capitalizeFirstLetter(pokemon.name)}
-                img={pokemon.image}
-                type={capitalizeFirstLetter(pokemon.type)}
-                ability={pokemon.ability}
-              />
-            ))
+            renderFilteredPokemon(filteredPokemontext)
           )
         ) : filteredPokemonList.length === 0 ? (
           <div className="no-pokemon">
@@ -122,15 +143,7 @@ function Cards(props) {
             </h1>
           </div>
         ) : (
-          filteredPokemonList.map((pokemon) => (
-            <Card
-              key={pokemon.id}
-              name={capitalizeFirstLetter(pokemon.name)}
-              img={pokemon.image}
-              type={capitalizeFirstLetter(pokemon.type)}
-              ability={pokemon.ability}
-            />
-          ))
+          renderFilteredPokemon(filteredPokemonList)
         )}
       </div>
     </div>

@@ -61,13 +61,22 @@ button:disabled {
   min-height: 26rem;
 }
 
-input {
+input[type="number"] {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
   text-align: center;
   width: 5rem;
+  outline: none;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 15rem;
   outline: none;
 }
 
@@ -80,6 +89,7 @@ input:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 1rem;
 }
 
 .no-pokemon {
